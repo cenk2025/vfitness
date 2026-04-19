@@ -52,14 +52,14 @@ const ProgramsPage = ({ t, user }) => {
     setSubmitting(false);
     
     if (!error) {
-      setSelectedProgram(null); // Kapat
-      navigate('/calendar'); // Takvime yönlendir
+      setSelectedProgram(null);
+      navigate('/calendar');
     } else {
-      alert('Hata oluştu!');
+      alert(t.errorOccurred);
     }
   };
 
-  if (loading) return <div className="dashboard-container">Yükleniyor...</div>;
+  if (loading) return <div className="dashboard-container">{t.loading}</div>;
 
   return (
     <div className="dashboard-container">
@@ -108,7 +108,7 @@ const ProgramsPage = ({ t, user }) => {
                 </select>
               </div>
               <div className="form-group">
-                <label>Saat</label>
+                <label>{t.timeLabel}</label>
                 <input type="time" className="form-control" value={time} onChange={(e) => setTime(e.target.value)} required />
               </div>
               <div className="form-group">

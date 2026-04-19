@@ -94,13 +94,13 @@ const CalendarPage = ({ t, user }) => {
     return (
       <div className="calendar-container" style={{ textAlign: 'center', paddingTop: '5rem' }}>
         <h2>{t.calendarTitle}</h2>
-        <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem' }}>Takviminizi görmek için giriş yapmalısınız.</p>
-        <button className="btn btn-primary" onClick={() => navigate('/login')}>Giriş Yap</button>
+        <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem' }}>{t.mustLogin}</p>
+        <button className="btn btn-primary" onClick={() => navigate('/login')}>{t.loginBtn}</button>
       </div>
     );
   }
 
-  if (loading) return <div className="calendar-container">Yükleniyor...</div>;
+  if (loading) return <div className="calendar-container">{t.loading}</div>;
 
   return (
     <div className="calendar-container">
@@ -127,7 +127,7 @@ const CalendarPage = ({ t, user }) => {
                       className="btn btn-primary" 
                       style={{ padding: '0.3rem 0.6rem', fontSize: '0.75rem', width: '100%' }}
                     >
-                      <Play size={12} /> Başla
+                      <Play size={12} /> {t.timerStart}
                     </button>
                   </div>
 
@@ -142,7 +142,7 @@ const CalendarPage = ({ t, user }) => {
               ))}
               {workouts.filter(w => w.day_of_week === index + 1).length === 0 && (
                 <div style={{ textAlign: 'center', color: 'var(--text-secondary)', opacity: 0.5, fontSize: '0.8rem', marginTop: '1rem' }}>
-                  Boş
+                  {t.emptyList}
                 </div>
               )}
             </div>
@@ -157,7 +157,7 @@ const CalendarPage = ({ t, user }) => {
         }}>
           <div className="auth-card" style={{ textAlign: 'center', border: '1px solid var(--accent-color)' }}>
             <h2 style={{ color: 'var(--accent-color)', marginBottom: '0.5rem' }}>{activeWorkout.workout_programs?.name}</h2>
-            <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem' }}>Hedef: {activeWorkout.sets} Set</p>
+            <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem' }}>{t.timerTarget}: {activeWorkout.sets} Set</p>
             
             <div style={{ fontSize: '4rem', fontWeight: '800', marginBottom: '2rem', fontFamily: 'monospace' }}>
               {formatTime(timer)}
@@ -167,17 +167,17 @@ const CalendarPage = ({ t, user }) => {
               <button 
                 onClick={() => setIsPlaying(!isPlaying)} 
                 className="btn btn-primary"
-                style={{ width: '120px' }}
+                style={{ width: '130px' }}
               >
-                {isPlaying ? <><Pause size={20} /> Durdur</> : <><Play size={20} /> Devam Et</>}
+                {isPlaying ? <><Pause size={20} /> {t.timerPause}</> : <><Play size={20} /> {t.timerResume}</>}
               </button>
               
               <button 
                 onClick={handleFinishWorkout} 
                 className="btn btn-secondary"
-                style={{ width: '120px', borderColor: 'var(--danger)', color: 'var(--danger)' }}
+                style={{ width: '130px', borderColor: 'var(--danger)', color: 'var(--danger)' }}
               >
-                <Square size={20} /> Bitir
+                <Square size={20} /> {t.timerFinish}
               </button>
             </div>
           </div>
