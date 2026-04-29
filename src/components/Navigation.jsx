@@ -22,6 +22,7 @@ const Navigation = ({ t, lang, toggleLang, user, handleLogout }) => {
         <Link to="/" className={`nav-link ${isActive('/')}`} onClick={closeMenu}>{t.navHome}</Link>
         <Link to="/programs" className={`nav-link ${isActive('/programs')}`} onClick={closeMenu}>{t.navPrograms}</Link>
         <Link to="/calendar" className={`nav-link ${isActive('/calendar')}`} onClick={closeMenu}>{t.navCalendar}</Link>
+        <Link to="/ravinto" className={`nav-link ${isActive('/ravinto')}`} onClick={closeMenu}>{t.navRavinto || 'Ravinto'}</Link>
         {user && <Link to="/dashboard" className={`nav-link ${isActive('/dashboard')}`} onClick={closeMenu}>{t.navDashboard}</Link>}
       </div>
 
