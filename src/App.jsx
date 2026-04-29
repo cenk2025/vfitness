@@ -56,7 +56,7 @@ function App() {
           <Route path="/login" element={<Login t={t} user={user} />} />
           <Route path="/dashboard" element={<Dashboard t={t} user={user} />} />
           <Route path="/calendar" element={<CalendarPage t={t} user={user} />} />
-          <Route path="/ravinto" element={<RavintoPage t={t} />} />
+          <Route path="/ravinto" element={<RavintoPage t={t} user={user} />} />
         </Routes>
       </main>
       <Footer t={t} />

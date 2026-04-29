@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const RavintoPage = ({ t }) => {
+const RavintoPage = ({ t, user }) => {
   const [result, setResult] = useState(null);
+  const navigate = useNavigate();
 
   const proteiinit = {
     'kaikki':  { aamu: 'munakas (3 munaa) + raejuusto 150 g', lounas: 'kanafilee 150 g', illallinen: 'lohi tai naudanliha 140 g' },
@@ -56,6 +58,16 @@ const RavintoPage = ({ t }) => {
       document.getElementById('ravinto-tulos')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }, 100);
   };
+
+  if (!user) {
+    return (
+      <div className="page-container" style={{ minHeight: '100vh', paddingTop: '8rem', textAlign: 'center', background: 'var(--bg-color)' }}>
+        <h2 style={{ color: '#fff' }}>{t.navRavinto || 'Ravinto-ohjelma'}</h2>
+        <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem' }}>{t.mustLogin}</p>
+        <button className="btn btn-primary" onClick={() => navigate('/login')}>{t.loginBtn}</button>
+      </div>
+    );
+  }
 
   return (
     <div className="page-container" style={{ minHeight: '100vh', paddingTop: '80px', paddingBottom: '40px', background: 'var(--bg-color)', color: '#fff' }}>
